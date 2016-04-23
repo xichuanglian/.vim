@@ -10,6 +10,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-scripts/taglist.vim', { 'on': 'Tlist' }
+Plug 'Shougo/vimproc.vim' | Plug 'Shougo/vimshell.vim', {'on': 'VimShell' }
 call plug#end()
 
 " Basics {
@@ -39,7 +40,7 @@ call plug#end()
 
 " General {
     filetype plugin indent on " load filetype plugins/indent settings
-    set autochdir " always switch to the current file directory 
+    "set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
     set backup " make backup files
     set clipboard=unnamedplus " share windows clipboard
@@ -197,4 +198,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+" }
+
+" CtrlP {
+let g:ctrlp_working_path_mode = 'ra'
 " }
