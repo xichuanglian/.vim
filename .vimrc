@@ -7,6 +7,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-scripts/taglist.vim', { 'on': 'Tlist' }
@@ -20,16 +21,16 @@ call plug#end()
     set background=dark " we plan to use a dark background
     set cpoptions=aABceFsmq
     "             |||||||||
-    "             ||||||||+-- When joining lines, leave the cursor 
+    "             ||||||||+-- When joining lines, leave the cursor
     "             |||||||      between joined lines
-    "             |||||||+-- When a new match is created (showmatch) 
+    "             |||||||+-- When a new match is created (showmatch)
     "             ||||||      pause for .5
-    "             ||||||+-- Set buffer options when entering the 
+    "             ||||||+-- Set buffer options when entering the
     "             |||||      buffer
     "             |||||+-- :write command updates current file name
-    "             ||||+-- Automatically add <CR> to the last line 
+    "             ||||+-- Automatically add <CR> to the last line
     "             |||      when using :@r
-    "             |||+-- Searching continues at the end of the match 
+    "             |||+-- Searching continues at the end of the match
     "             ||      at the cursor position
     "             ||+-- A backslash has no special meaning in mappings
     "             |+-- :write updates alternative file name
@@ -42,12 +43,12 @@ call plug#end()
     filetype plugin indent on " load filetype plugins/indent settings
     "set autochdir " always switch to the current file directory
     set backspace=indent,eol,start " make backspace a more flexible
-    set backup " make backup files
+    set nobackup " do not make backup files
     set clipboard=unnamedplus " share windows clipboard
     set fileformats=unix,dos,mac " support all three, in this order
     set hidden " you can change buffers without saving
     " (XXX: #VIM/tpope warns the line below could break things)
-    set iskeyword+=_,$,@,%,# " none of these are word dividers 
+    set iskeyword+=_,$,@,%,# " none of these are word dividers
     set mouse=a " use mouse everywhere
     set noerrorbells " don't make noise
     set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
@@ -72,16 +73,16 @@ call plug#end()
 " Vim UI {
     "set cursorcolumn " highlight the current column
     set cursorline " highlight current line
-    set incsearch " BUT do highlight as you type you 
+    set incsearch " BUT do highlight as you type you
                    " search phrase
     set laststatus=2 " always show the status line
     set lazyredraw " do not redraw while running macros
-    set linespace=0 " don't insert any extra pixel lines 
+    set linespace=0 " don't insert any extra pixel lines
                      " betweens rows
-    set list " we do what to show tabs, to ensure we get them 
+    set list " we do what to show tabs, to ensure we get them
               " out of my files
-    set listchars=tab:>-,trail:-,extends:>,precedes:<" show tabs and trailing 
-    set matchtime=5 " how many tenths of a second to blink 
+    set listchars=tab:>-,trail:-,extends:>,precedes:<" show tabs and trailing
+    set matchtime=5 " how many tenths of a second to blink
                      " matching brackets for
     set nohlsearch " do not highlight searched for phrases
     set nostartofline " leave my cursor where it was
@@ -91,7 +92,7 @@ call plug#end()
     set report=0 " tell us when anything is changed via :...
     set ruler " Always show current positions along the bottom
     set scrolloff=10 " Keep 10 lines (top/bottom) for scope
-    set shortmess=aOstT " shortens messages to avoid 
+    set shortmess=aOstT " shortens messages to avoid
                          " 'press a key' prompt
     set showcmd " show the command being typed
     set showmatch " show matching brackets
@@ -103,34 +104,34 @@ call plug#end()
     set completeopt= " don't use a pop up menu for completions
 
     set expandtab " no real tabs please!
-    set formatoptions=rq " Automatically insert comment leader on return, 
+    set formatoptions=rq " Automatically insert comment leader on return,
                           " and let gq format comments
     set ignorecase " case insensitive by default
     set infercase " case inferred by default
     set nowrap " do not wrap line
     set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
     set smartcase " if there are caps, go case-sensitive
-    set shiftwidth=4 " auto-indent amount when using cindent, 
+    set shiftwidth=4 " auto-indent amount when using cindent,
                       " >>, << and stuff like that
-    set softtabstop=4 " when hitting tab or backspace, how many spaces 
+    set softtabstop=4 " when hitting tab or backspace, how many spaces
                        "should a tab be (see expandtab)
-    set tabstop=8 " real tabs should be 8, and they will show with 
+    set tabstop=8 " real tabs should be 8, and they will show with
                    " set list on
 " }
 
 " Folding {
     set foldenable " Turn on folding
-    set foldmarker={,} " Fold C style code (only use this as default 
+    set foldmarker={,} " Fold C style code (only use this as default
                         " if you use a high foldlevel)
     set foldmethod=marker " Fold on the marker
-    set foldlevel=100 " Don't autofold anything (but I can still 
+    set foldlevel=100 " Don't autofold anything (but I can still
                       " fold manually)
     set foldopen=block,hor,mark,percent,quickfix,tag " what movements
-                                                      " open folds 
+                                                      " open folds
     function SimpleFoldText() " {
         return getline(v:foldstart).' '
     endfunction " }
-    set foldtext=SimpleFoldText() " Custom fold text function 
+    set foldtext=SimpleFoldText() " Custom fold text function
                                    " (cleaner than default)
 " }
 
@@ -166,7 +167,7 @@ if has("gui_running")
         set background=light
         set columns=100 " perfect size for me
         set guifont=Sauce\ Code\ Powerline\ 10
-        set guioptions=ce 
+        set guioptions=ce
         "              ||
         "              |+-- use simple dialogs rather than pop-ups
         "              +  use GUI tabs, not console style tabs
@@ -186,6 +187,10 @@ if has("gui_running")
 endif
 " }
 
+" FileType Specific Settings {
+au FileType go set nolist
+" }
+
 " Taglist {
 let g:Tlist_Use_Right_Window = 1
 let g:Tlist_Ctags_Cmd = '/usr/bin/ctags'
@@ -201,7 +206,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " }
 
 " CtrlP {
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = ''
 " }
 
 " The Silver Searcher {
