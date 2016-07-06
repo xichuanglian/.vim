@@ -218,4 +218,7 @@ if executable('ag')
     " .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" YCM
+let g:ycm_confirm_extra_conf = 0
 " }
