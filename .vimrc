@@ -166,7 +166,11 @@ if has("gui_running")
         colorscheme solarized " only works in GUI
         set background=light
         set columns=100 " perfect size for me
-        set guifont=Sauce\ Code\ Powerline\ 10
+        if has("gui_macvim")
+            set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+        else
+            set guifont=Sauce\ Code\ Powerline\ 10
+        endif
         set guioptions=ce
         "              ||
         "              |+-- use simple dialogs rather than pop-ups
