@@ -164,7 +164,7 @@ call plug#end()
 if has("gui_running")
     " Basics {
         colorscheme solarized " only works in GUI
-        set background=light
+        set background=dark
         set columns=100 " perfect size for me
         if has("gui_macvim")
             set guifont=Source\ Code\ Pro\ for\ Powerline:h13
